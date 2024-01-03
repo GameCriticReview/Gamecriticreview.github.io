@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Cities Skylines</title>
+    <style>
+        body {
+            background: url(images/title_bg.webp) no-repeat center top / 130% auto;
+            padding-top: 80px;
+            margin: 0;
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        * {
+            padding: 0;
+            margin: 0;
+            font-family: 'Arial', monospace;
+        }
+
+        nav {
+            background: #64b4ff;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            width: 100%;
+            z-index: 999;
+        }
+
+        .logo {
+            padding: 0;
+        }
+
+        .nav-link {
+            display: block;
+            padding: 15px;
+            color: #FFF;
+            text-decoration: none;
+            text-align: center;
+            font-size: 20px;
+            transition: font-size 0.3s;
+        }
+
+        .dropdown-button{
+            color: #FFF;
+            text-decoration: none;
+            text-align: center;
+            font-size: 20px;
+            transition: font-size 0.3s;
+        }
+        
+
+        .nav-link:hover {
+            background: #3091ec;
+        }
+
+        .nav-list {
+            list-style: none;
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        .nav-item {
+            display: inline-block;
+            position: relative;
+            margin-right: 10px;
+        }
+
+        .nav-item:last-child {
+            margin-right: 0;
+        }
+
+        .dropdown {
+            background: #64b4ff;
+            position: absolute;
+            z-index: 999;
+            display: none;
+            padding: 0;
+            max-width: 120px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .dropdown-item a {
+            display: block;
+            padding: 10px; /* Adjust as needed */
+            text-align: left; /* Align text to the left */
+            color: #FFF;
+            text-decoration: none;
+            font-size: 16px; /* Adjust as needed */
+            transition: background 0.3s, font-size 0.3s;
+        }
+
+        .dropdown-item:hover a {
+            background: #3091ec;
+            color: #FFF;
+            font-size: 18px; /* Adjust as needed */
+        }
+
+        .nav-item:hover .dropdown {
+            display: block;
+        }
+
+        .top-banner {
+            width: 50%;
+            max-height: auto;
+            margin-top: 65px;
+        }
+
+        .center-banner {
+            display: flex;
+            justify-content: center;
+        }
+
+        .center-button {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .center-button a {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #64b4ff;
+            color: #fff;
+            text-decoration: none;
+            font-size: 20px;
+            transition: font-size 0.3s;
+            border-radius: 5px;
+            width: 25%;
+        }
+
+        .info {
+            display: flex;
+            margin-top: 170px;
+            border: 2px solid #fff; /* Add border to info div */
+            overflow: hidden; /* Optional: Hide overflow */
+        }
+
+        /* Add or update the following styles in your <style> section */
+
+        .description-title {
+            text-align: center;
+            color: #fff;
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+
+        .description {
+            background-color: #64b4ff; /* Match the nav background color */
+            flex: 3;
+            padding: 30px; /* Add padding for better readability */
+            box-sizing: border-box; /* Include padding in the box model */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .image {
+            background-color: #64b4ff; /* Match the nav hover color */
+            flex: 2;
+            display: flex;
+            align-items: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .description-image {
+            display: block;
+            width: 45%;
+            margin: 0 auto; /* Center the image horizontally */
+            max-height: 80%; /* Make sure the image does not exceed its container */
+        }
+
+        .description-text {
+            color: #555;
+            font-family: 'Poppins', sans-serif; /* Match the body font */
+            font-size: 18px; /* Slightly reduce font size for better readability */
+        }
+
+        .part1 {
+            display: flex;
+            margin-top: 0px;
+            border: 2px solid #fff; /* Add border to part1 div */
+            overflow: hidden; /* Optional: Hide overflow */
+        }
+
+        .description-part1 {
+            background-color: #64b4ff; /* Match the nav background color */
+            flex: 3;
+            padding: 30px; /* Add padding for better readability */
+            box-sizing: border-box; /* Include padding in the box model */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .image-part1 {
+            background-color: #64b4ff; /* Match the nav hover color */
+            flex: 2;
+            display: flex;
+            align-items: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .container{
+            max-width: 1170px;
+            margin: auto;
+        }
+
+        .footer{
+            background-color: #3091ec;
+            padding: 70px 0;
+        }
+
+        ul{
+            list-style: none;
+        }
+
+        .row{
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        .footer-col{
+            width: 30%;
+            padding: 0 15px
+        }
+
+        .footer-col h4{
+            font-size: 18px;
+            color: white;
+            text-transform: capitalize;
+            margin-bottom: 35px;
+            font-weight: 500;
+            position: relative;
+        }
+
+        .footer-col h4::before{
+            content: '';
+            position: absolute;
+            left:0;
+            bottom: -10px;
+            background-color: #e91e63;
+            height: 2px;
+            box-sizing: border-box;
+            width: 50px;
+        }
+
+        .footer-col ul li:not(:last-child){
+            margin-bottom: 10px;
+        }
+
+        .footer-col ul li a{
+            font-size: 16px;
+            text-transform: capitalize;
+            color: rgb(219, 219, 219);
+            text-decoration: none;
+            font-weight: 300;
+            display: block;
+            transition: all 0.3s ease;
+        }
+
+        .footer-col ul li a:hover{
+            color: rgb(163, 163, 163);
+            padding-left: 10px;
+        }
+
+        .gamenav{
+            margin-top: 49px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Add box shadow */
+        }
+
+        .navbar {
+            background-color: #3091ec;
+            display: flex;
+            justify-content: space-between;
+            padding: 7px;
+        }
+
+        .navbar-section {
+            text-align: center;
+            color: #fff;
+            margin: 0;
+            flex: 1;
+            font-weight: bold;
+        }
+
+        .navbar-section a {
+            text-decoration: none;
+            font-weight: bold;
+            color: #fff;
+        }
+
+        .navbar-section button {
+            background-color: #fff;
+            color: #64b4ff;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+            border-radius: 20px;
+            margin-right: 20px;
+        }
+
+        @media (max-width: 768px) {
+            .logo img {
+                width: 250px;
+            }
+            .nav-list {
+                justify-content: center;
+            }
+            .nav-item {
+                margin-right: 5px;
+            }
+            .nav-link {
+                font-size: 16px;
+            }
+            .dropdown-item {
+                max-width: 100px;
+            }
+            .center-button a {
+                font-size: 14px;
+            }
+            .dropdown-button {
+                font-size: 16px;
+            }
+            .info {
+                margin-top: 40px;
+            }
+            .description-text {
+                font-size: 14px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="navbar-section">
+            <p><a href="/index.html" class="right-section-navtop">Back to GameCriticReview</a></p>
+        </div>
+        <div class="navbar-section">
+            <p>Cities Skylines</p>
+        </div>
+        <div class="navbar-section">
+            <button>Login/Sign Up</button>
+        </div>
+    </nav>
+    
+<nav class="gamenav">
+    <div class="logo">
+        <a href=""><img src="images/gamecriticreviewlogo.png" alt="Gamecriticreview Logo" width="400"></a>
+    </div>
+    <ul class="nav-list">
+        <li class="nav-item"><a class="nav-link" href="/CitiesSkylines/citiesskylines-home.html"><u><b>Home</b></u></a></li>
+        <li class="nav-item"><a class="nav-link" href="/CitiesSkylines/citiesskylines-about.html">About</a></li>
+        <li class="nav-item"><a class="nav-link" href="/CitiesSkylines/citiesskylines-guide.html">Guide</a></li>
+        <li class="nav-item"><a class="nav-link" href="/CitiesSkylines/citiesskylines-tips.html">Tips</a></li>
+        <li class="nav-item"><a class="nav-link" href="/CitiesSkylines/citiesskylines-maps.html">Maps</a></li>
+        <li class="nav-item"><a class="nav-link" href="/CitiesSkylines/citiesskylines-mods.html">Mods</a></li>
+        <li class="nav-item"><a class="nav-link" href="https://store.steampowered.com/news/app/255710">News</a></li>
+        <li class="nav-item"><a class="nav-link" href="/CitiesSkylines/citiesskylines-faq.html">FAQ</a></li>
+        <li class="nav-item">
+            <a class="nav-link" href="">Download</a>
+            <ul class="dropdown">
+                <li class="dropdown-item"><a href="https://www.paradoxinteractive.com/games/cities-skylines/buy">Paradox Store</a></li>
+                <li class="dropdown-item"><a href="https://store.steampowered.com/app/255710/Cities_Skylines/">Steam</a></li>
+                <li class="dropdown-item"><a href="https://store.epicgames.com/en-US/p/cities-skylines">Epic Games</a></li>
+                <li class="dropdown-item"><a href="https://store.playstation.com/no-no/product/EP4139-PPSA09192_00-CITIESSKYLINESEU/">Play- station 4</a></li>
+                <li class="dropdown-item"><a href="https://store.playstation.com/no-no/product/EP4139-PPSA09192_00-CITIESSKYLINESEU/">Play- station 5</a></li>
+                <li class="dropdown-item"><a href="https://www.xbox.com/nb-NO/games/store/cities-skylines-xbox-one-edition/c4gh8n6zxg5l">Xbox</a></li>
+                <li class="dropdown-item"><a href="https://www.nintendo.com/us/store/products/cities-skylines-nintendo-switch-edition-switch/">Nintendo Switch</a></li>
+                <li class="dropdown-item"><a href="https://www.xbox.com/nb-no/games/store/cities-skylines-windows-10-edition/9nwvc7xp3pfd?rtc=1">Microsoft</a></li>
+            </ul>
+        </li>
+    </ul>
+</nav>
+
+<main>
+    <div class="center-banner">
+        <img class="top-banner" src="images/banner.png" alt="Title Cities Skylines">
+    </div>
+
+    <div class="center-button">
+        <a href="#">Go To Cities Skylines II -></a>
+    </div>
+
+    <div class="info">
+        <div class="description">
+            <h2 class="description-title">Description</h2>
+            <p class="description-text">Create and manage your own bustling city with "Cities: Skylines." Design, build, and watch your metropolis come to life. Dive into the joy of urban planning and make your mark on the skyline. Start your city-building adventure now! </p>
+        </div>
+
+        <div class="image">
+            <img class="description-image" src="images/citiesskylineslogo.png">
+        </div>
+    </div>
+
+    <div class="part1">
+        <div class="image-part1">
+            <img class="description-image" src="images/road.jpg">
+        </div>
+        
+        <div class="description-part1">
+            <h2 class="description-title">Unleash Your Creativity</h2>
+            <p class="description-text">Design and build your dream city with limitless possibilities in Cities: Skylines. From intricate road networks to iconic landmarks, shape a metropolis that reflects your unique vision. </p>
+        </div>
+    </div>
+
+    <div class="part1">
+        <div class="description-part1">
+            <h2 class="description-title">Realistic Urban Simulation</h2>
+            <p class="description-text">Experience the intricacies of city life as you balance budgets, manage resources, and make crucial policy decisions. Cities: Skylines offers a realistic and immersive simulation where every choice shapes the destiny of your growing population. </p>
+        </div>
+
+        <div class="image-part1">
+            <img class="description-image" src="images/urban.jpg">
+        </div>
+    </div>
+
+    <div class="part1">
+        <div class="image-part1">
+            <img class="description-image" src="images/big-city.jpg">
+        </div>
+        
+        <div class="description-part1">
+            <h2 class="description-title">Endless City Expansion</h2>
+            <p class="description-text">Embark on a journey from a small town to a sprawling metropolis. Explore diverse districts, implement advanced transportation systems, and dive into endless expansion opportunities. With a vibrant modding community, the city-building adventure is limitless. </p>
+        </div>
+    </div>
+</main>
+
+<footer class="footer">
+    <div class="container">
+        <div class="row">
+            <div class="footer-col">
+                <h4>Contact Us</h4>
+                <ul>
+                    <li><a href="mailto:gamecriticreview.com@gmail.com">Email</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Creator Of This Review</h4>
+                <ul>
+                    <li><a href="#">DinoPlayzZ / CEO David</a></li>
+                    <li><a href="mailto:davidworker000@gmail.com">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Other Products</h4>
+                <ul>
+                    <li><a target="_blank" href="https://www.xfisher.org">xFisher</a></li>
+                    <li><a target="_blank" href="https://www.playcraft.no">Playcraft</a></li>
+                    <li><a target="_blank" href="https://www.fiverr.com/davidsamochvalo?up_rollout=true">Fiverr - David</a></li>
+                    <li><a target="_blank" href="#">Fiverr - Aleks</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</footer>
+
+</body>
+</html>

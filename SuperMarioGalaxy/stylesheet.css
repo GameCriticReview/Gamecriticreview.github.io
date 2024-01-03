@@ -1,0 +1,308 @@
+body {
+    background: url(/SuperMarioGalaxy/images/title_bg.jpg);
+    background-repeat: no-repeat;
+    background-size: 100% auto;
+    background-attachment: local;
+    padding-top: 80px;
+    margin-top: 75px;
+}
+
+h1 {
+    text-align: center;
+}
+
+* {
+    padding: 0;
+    margin: 0;
+    font-family: 'Poppins', monospace;
+}
+
+nav {
+    background: #091d64;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    z-index: 999;
+}
+
+.logo {
+    padding: 0;
+}
+
+ul {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    margin-right: -10px;
+}
+
+ul li {
+    display: inline-block;
+    position: relative;
+    margin-right: 10px;
+}
+
+ul li:last-child {
+    margin-right: 0;
+}
+
+ul li a {
+    display: block;
+    padding: 15px 15px;
+    color: #FFF;
+    text-decoration: none;
+    text-align: center;
+    font-size: 20px;
+    transition: font-size 0.3s;
+}
+
+ul li ul.dropdown {
+    background: #091d64;
+    position: absolute;
+    z-index: 999;
+    display: none;
+    padding: 0;
+    max-width: 120px;
+    white-space: nowrap; /* Ensure long text doesn't wrap */
+    overflow: hidden; /* Hide overflowing content */
+    top: 100%; /* Position the dropdown below the parent */
+    left: 0; /* Align with the left edge of the parent */
+}
+
+ul li ul.dropdown li {
+    display: block;
+    padding: 0;
+    max-width: 120px;
+}
+
+ul li a:hover {
+    background: #071547;
+}
+
+ul li:hover ul.dropdown {
+    display: block;
+}
+
+.top-banner {
+    max-width: 100%;
+    max-height: 60vh;
+}
+
+.center-banner {
+    display: flex;
+    justify-content: center;
+}
+
+.center-button {
+    text-align: center;
+    margin-top: 20px;
+    transition: all 0.4s;
+}
+
+.center-button:hover {
+    opacity: 0.9;
+    transform: scale(1.05);
+}
+
+.center-button a {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #091d64;
+    color: #fff;
+    text-decoration: none;
+    font-size: 20px;
+    transition: font-size 0.3s;
+}
+
+@media (max-width: 768px) {
+    .logo img {
+        width: 250px;
+    }
+    ul {
+        justify-content: center;
+    }
+    ul li {
+        margin-right: 5px;
+    }
+    ul li a {
+        font-size: 16px;
+    }
+    ul li ul.dropdown li {
+        max-width: 100px;
+    }
+    .center-button a {
+        font-size: 16px;
+    }
+}
+
+
+body {
+    background-color: #0a2177;
+}
+
+p {
+    color: white;
+    text-shadow: 5px, black;
+}
+
+.footer {
+    background-color: #3091ec;
+    padding: 70px 0;
+}
+
+ul {
+    list-style: none;
+}
+
+.row {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.footer {
+    background-color: #3091ec;
+    padding: 70px 0;
+}
+
+ul {
+    list-style: none;
+}
+
+.row {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.footer-col {
+    width: 30%;
+    padding: 0 15px;
+}
+
+.footer-col h4 {
+    font-size: 18px;
+    color: white;
+    text-transform: capitalize;
+    margin-bottom: 35px;
+    font-weight: 500;
+    position: relative;
+}
+
+        .footer-col h4::before {
+        content: '';
+        position: absolute;
+        left: 0;
+        bottom: -10px;
+        background-color: #e91e63;
+        height: 2px;
+        box-sizing: border-box;
+        width: 50px;
+        }
+
+        .footer-col ul li:not(:last-child) {
+            margin-bottom: 10px;
+        }
+
+        .footer-col ul li a {
+            font-size: 16px;
+            text-transform: capitalize;
+            color: rgb(219, 219, 219);
+            text-decoration: none;
+            font-weight: 300;
+            display: block;
+            transition: all 0.3s ease;
+        }   
+
+.footer-col ul li a:hover {
+    color: rgb(163, 163, 163);
+    padding-left: 10px;
+}
+
+        .gamenav {
+            margin-top: 49px;
+        }
+ 
+        .navbar {
+            background-color: #0a2177;
+            display: flex;
+            justify-content: space-between;
+            padding: 7px;
+        }
+ 
+        .navbar-section {
+            text-align: center;
+            color: #fff;
+            margin: 0;
+            flex: 1;
+            font-weight: bold;
+        }
+ 
+        .navbar-section a {
+            text-decoration: none;
+            font-weight: bold;
+            color: #fff;
+        }
+ 
+        .navbar-section button {
+            background-color: #fff;
+            color: #64b4ff;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+            border-radius: 20px;
+            margin-right: 20px;
+        }
+ 
+        .footer {
+            background-color: #091d64;
+            padding: 70px 0;
+        }
+ 
+        ul {
+            list-style: none;
+        }
+ 
+        .row {
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        .title {
+            display: inline-flex;
+            align-self: stretch;
+            justify-content: center;
+            padding: 0.25rem;
+            flex-basis: fit-content;
+            flex-shrink: 0;
+            min-width: 2.5rem;
+            font-size: 0.7em;
+            font-weight: 700;
+            color: #fff;
+            line-height: 1.2em;
+            background: #091d64;
+            box-sizing: border-box;
+        }
+
+        .number {
+            display: inline-flex;
+            align-self: stretch;
+            justify-content: center;
+            padding: 0.25rem;
+            flex-basis: fit-content;
+            flex-shrink: 0;
+            min-width: 2.5rem;
+            font-size: 1em;
+            font-weight: 700;
+            color: #fff;
+            line-height: 1.2em;
+            background: #091d64;
+            box-sizing: border-box;
+        }
+
+        .text {
+            font-family: Arial, Helvetica, sans-serif;
+        }

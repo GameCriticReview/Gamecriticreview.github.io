@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>
+        Cities Skylines
+    </title>
+
+    <style>
+            body {
+        padding-top: 80px;
+        margin: 0;
+        }
+
+        * {
+            padding: 0;
+            margin: 0;
+            font-family: 'Arial', monospace;
+        }
+
+        nav {
+            background: #64b4ff;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            width: 100%;
+            z-index: 999;
+        }
+
+        .logo {
+            padding: 0;
+        }
+
+        .nav-link {
+            display: block;
+            padding: 15px;
+            color: #FFF;
+            text-decoration: none;
+            text-align: center;
+            font-size: 20px;
+            transition: font-size 0.3s;
+        }
+
+        .dropdown-button {
+            color: #FFF;
+            text-decoration: none;
+            text-align: center;
+            font-size: 20px;
+            transition: font-size 0.3s;
+        }
+
+        .nav-link:hover {
+            background: #3091ec;
+        }
+
+        .nav-list {
+            list-style: none;
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        .nav-item {
+            display: inline-block;
+            position: relative;
+            margin-right: 10px;
+        }
+
+        .nav-item:last-child {
+            margin-right: 0;
+        }
+
+        .dropdown {
+            background: #64b4ff;
+            position: absolute;
+            z-index: 999;
+            display: none;
+            padding: 0;
+            max-width: 120px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .dropdown-item a {
+            display: block;
+            padding: 10px; /* Adjust as needed */
+            text-align: left; /* Align text to the left */
+            color: #FFF;
+            text-decoration: none;
+            font-size: 16px; /* Adjust as needed */
+            transition: background 0.3s, font-size 0.3s;
+        }
+
+        .dropdown-item:hover a {
+            background: #3091ec;
+            color: #FFF;
+            font-size: 18px; /* Adjust as needed */
+        }
+
+        .nav-item:hover .dropdown {
+            display: block;
+        }
+
+        .gamenav {
+            margin-top: 49px;
+        }
+
+        .navbar {
+            background-color: #3091ec;
+            display: flex;
+            justify-content: space-between;
+            padding: 7px;
+        }
+
+        .navbar-section {
+            text-align: center;
+            color: #fff;
+            margin: 0;
+            flex: 1;
+            font-weight: bold;
+        }
+
+        .navbar-section a {
+            text-decoration: none;
+            font-weight: bold;
+            color: #fff;
+        }
+
+        .navbar-section button {
+            background-color: #fff;
+            color: #64b4ff;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+            border-radius: 20px;
+            margin-right: 20px;
+        }
+
+        .footer {
+            background-color: #3091ec;
+            padding: 70px 0;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        .row {
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        .footer-col {
+            width: 30%;
+            padding: 0 15px;
+        }
+
+        .footer-col h4 {
+            font-size: 18px;
+            color: white;
+            text-transform: capitalize;
+            margin-bottom: 35px;
+            font-weight: 500;
+            position: relative;
+        }
+
+        .footer-col h4::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: -10px;
+            background-color: #e91e63;
+            height: 2px;
+            box-sizing: border-box;
+            width: 50px;
+        }
+
+        .footer-col ul li:not(:last-child) {
+            margin-bottom: 10px;
+        }
+
+        .footer-col ul li a {
+            font-size: 16px;
+            text-transform: capitalize;
+            color: rgb(219, 219, 219);
+            text-decoration: none;
+            font-weight: 300;
+            display: block;
+            transition: all 0.3s ease;
+        }
+
+        .footer-col ul li a:hover {
+            color: rgb(163, 163, 163);
+            padding-left: 10px;
+        }
+
+        @media (max-width: 768px) {
+            .logo img {
+                width: 250px;
+            }
+            .nav-list {
+                justify-content: center;
+            }
+            .nav-item {
+                margin-right: 5px;
+            }
+            .nav-link {
+                font-size: 16px;
+            }
+            .dropdown-item {
+                max-width: 100px;
+            }
+            .center-button a {
+                font-size: 14px;
+            }
+            .dropdown-button {
+                font-size: 16px;
+            }
+            .info {
+                margin-top: 40px;
+            }
+            .description-text {
+                font-size: 14px;
+            }
+        }
+    </style>
+
+
+    
+    <style>
+                body{
+            background-color: #64b4ff;
+        }
+
+        main{
+        margin-left: 150px;
+        margin-right:150px;
+        background-color: #64b4ff;
+        margin-top: 75px;
+        }
+
+        .category-box {
+            border: 2px solid #3091ec;
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 20px;
+        }
+
+        .category-name {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 10px;
+            cursor: pointer;
+            color: white;
+        }
+
+        .category-dropdown {
+            display: none;
+            margin-top: 10px;
+        }
+
+        .category-dropdown-item {
+            font-size: 18px;
+            margin-bottom: 5px;
+            color: #555;
+        }
+    </style>
+
+    <script>
+        function toggleDropdown(id) {
+            var dropdown = document.getElementById(id);
+            dropdown.style.display = dropdown.style.display === 'none' ? 'block' : 'none';
+        }
+    </script>
+</head>
+
+<body>
+    <nav class="navbar">
+        <div class="navbar-section">
+            <p><a href="/index.html" class="right-section-navtop">Back to GameCriticReview</a></p>
+        </div>
+        <div class="navbar-section">
+            <p>Cities Skylines</p>
+        </div>
+        <div class="navbar-section">
+            <button>Login/Sign Up</button>
+        </div>
+    </nav>
+    
+    <nav class="gamenav">
+        <div class="logo">
+            <a href=""><img src="images/gamecriticreviewlogo.png" alt="Gamecriticreview Logo" width="400"></a>
+        </div>
+        <ul class="nav-list">
+            <li class="nav-item"><a class="nav-link" href="/CitiesSkylines/citiesskylines-home.html">Home</a></li>
+            <li class="nav-item"><a class="nav-link" href="/CitiesSkylines/citiesskylines-about.html">About</a></li>
+            <li class="nav-item"><a class="nav-link" href="/CitiesSkylines/citiesskylines-guide.html">Guide</a></li>
+            <li class="nav-item"><a class="nav-link" href="/CitiesSkylines/citiesskylines-tips.html"><u><b>Tips</b></u></a></li>
+            <li class="nav-item"><a class="nav-link" href="/CitiesSkylines/citiesskylines-maps.html">Maps</a></li>
+            <li class="nav-item"><a class="nav-link" href="/CitiesSkylines/citiesskylines-mods.html">Mods</a></li>
+            <li class="nav-item"><a class="nav-link" href="https://store.steampowered.com/news/app/255710">News</a></li>
+            <li class="nav-item"><a class="nav-link" href="/CitiesSkylines/citiesskylines-faq.html">FAQ</a></li>
+            <li class="nav-item">
+                <a class="nav-link" href="">Download</a>
+                <ul class="dropdown">
+                    <li class="dropdown-item"><a href="https://www.paradoxinteractive.com/games/cities-skylines/buy">Paradox Store</a></li>
+                    <li class="dropdown-item"><a href="https://store.steampowered.com/app/255710/Cities_Skylines/">Steam</a></li>
+                    <li class="dropdown-item"><a href="https://store.epicgames.com/en-US/p/cities-skylines">Epic Games</a></li>
+                    <li class="dropdown-item"><a href="https://store.playstation.com/no-no/product/EP4139-PPSA09192_00-CITIESSKYLINESEU/">Play- station 4</a></li>
+                    <li class="dropdown-item"><a href="https://store.playstation.com/no-no/product/EP4139-PPSA09192_00-CITIESSKYLINESEU/">Play- station 5</a></li>
+                    <li class="dropdown-item"><a href="https://www.xbox.com/nb-NO/games/store/cities-skylines-xbox-one-edition/c4gh8n6zxg5l">Xbox</a></li>
+                    <li class="dropdown-item"><a href="https://www.nintendo.com/us/store/products/cities-skylines-nintendo-switch-edition-switch/">Nintendo Switch</a></li>
+                    <li class="dropdown-item"><a href="https://www.xbox.com/nb-no/games/store/cities-skylines-windows-10-edition/9nwvc7xp3pfd?rtc=1">Microsoft</a></li>
+                </ul>
+            </li>
+        </ul>
+    </nav>
+<main>
+    <div class="category-box" id="beginners-guide">
+        <div class="category-name" onclick="toggleDropdown('beginners-dropdown')">Beginner's Guide</div>
+        <div class="category-dropdown" id="beginners-dropdown">
+            <div class="category-dropdown-item">Getting Started - Learn the basics of zoning and essential infrastructure.</div>
+            <div class="category-dropdown-item">Building Layouts - Plan efficient road networks and avoid traffic congestion.</div>
+            <div class="category-dropdown-item">Budget Management - Adjust taxes and expenses to maintain a stable economy.</div>
+            <div class="category-dropdown-item">Fun Fact: The game's initial release was on March 10, 2015.</div>
+        </div>
+    </div>
+    
+    <div class="category-box" id="traffic-management">
+        <div class="category-name" onclick="toggleDropdown('traffic-dropdown')">Traffic Management</div>
+        <div class="category-dropdown" id="traffic-dropdown">
+            <div class="category-dropdown-item">Roundabouts vs. Intersections - Optimize traffic flow with strategic road planning.</div>
+            <div class="category-dropdown-item">Public Transportation - Efficiently use buses, metro, and other public transit options.</div>
+            <div class="category-dropdown-item">Traffic Policies - Implement traffic rules to control the movement of vehicles.</div>
+            <div class="category-dropdown-item">Fun Fact: Cities: Skylines allows you to design and share custom maps on the Steam Workshop.</div>
+        </div>
+    </div>
+    
+    <div class="category-box" id="city-design">
+        <div class="category-name" onclick="toggleDropdown('design-dropdown')">City Design</div>
+        <div class="category-dropdown" id="design-dropdown">
+            <div class="category-dropdown-item">Zoning Strategies - Balance residential, commercial, and industrial zones for a thriving city.</div>
+            <div class="category-dropdown-item">Landscaping - Utilize parks, trees, and beautification for a visually appealing city.</div>
+            <div class="category-dropdown-item">Unique Buildings - Unlock and place unique structures to boost city services.</div>
+            <div class="category-dropdown-item">Fun Fact: The game's developers, Colossal Order, are based in Tampere, Finland.</div>
+        </div>
+    </div>
+    
+    <div class="category-box" id="economy">
+        <div class="category-name" onclick="toggleDropdown('economy-dropdown')">Economy</div>
+        <div class="category-dropdown" id="economy-dropdown">
+            <div class="category-dropdown-item">Taxation Strategies - Adjust tax rates to meet the financial needs of your city.</div>
+            <div class="category-dropdown-item">Specialized Districts - Develop unique districts for specialized industries.</div>
+            <div class="category-dropdown-item">Import and Export - Manage trade routes to boost your city's economy.</div>
+            <div class="category-dropdown-item">Fun Fact: The game's soundtrack includes over 20 tracks composed by various artists.</div>
+        </div>
+    </div>
+    
+    <div class="category-box" id="utilities">
+        <div class="category-name" onclick="toggleDropdown('utilities-dropdown')">Utilities</div>
+        <div class="category-dropdown" id="utilities-dropdown">
+            <div class="category-dropdown-item">Power and Water - Ensure a stable supply of electricity and water for your city.</div>
+            <div class="category-dropdown-item">Waste Management - Properly handle garbage and maintain a clean environment.</div>
+            <div class="category-dropdown-item">Natural Disasters - Prepare for and recover from various natural disasters.</div>
+            <div class="category-dropdown-item">Fun Fact: Cities: Skylines supports extensive modding, allowing players to customize their experience.</div>
+        </div>
+    </div>
+    
+    <div class="category-box" id="health-and-education">
+        <div class="category-name" onclick="toggleDropdown('health-education-dropdown')">Health and Education</div>
+        <div class="category-dropdown" id="health-education-dropdown">
+            <div class="category-dropdown-item">Healthcare Systems - Provide effective healthcare services for your citizens.</div>
+            <div class="category-dropdown-item">Education Facilities - Establish schools and universities to educate your population.</div>
+            <div class="category-dropdown-item">Recreation and Leisure - Build parks and recreational areas to improve citizens' well-being.</div>
+            <div class="category-dropdown-item">Fun Fact: The game's map editor allows players to create custom terrains and landscapes.</div>
+        </div>
+    </div>
+    
+    <div class="category-box" id="policies">
+        <div class="category-name" onclick="toggleDropdown('policies-dropdown')">Policies</div>
+        <div class="category-dropdown" id="policies-dropdown">
+            <div class="category-dropdown-item">City Planning Policies - Implement policies to influence the development of your city.</div>
+            <div class="category-dropdown-item">Economic Policies - Fine-tune economic parameters to encourage specific behaviors.</div>
+            <div class="category-dropdown-item">Social Policies - Shape the social aspects of your city through various policies.</div>
+            <div class="category-dropdown-item">Fun Fact: Cities: Skylines has a day-night cycle, affecting traffic patterns and city aesthetics.</div>
+        </div>
+    </div>
+    
+    <div class="category-box" id="mods-and-assets">
+        <div class="category-name" onclick="toggleDropdown('mods-assets-dropdown')">Mods and Assets</div>
+        <div class="category-dropdown" id="mods-assets-dropdown">
+            <div class="category-dropdown-item">Steam Workshop - Explore and install a vast array of mods and assets from the Steam Workshop.</div>
+            <div class="category-dropdown-item">Creating Mods - Learn the basics of modding to create custom content for the game.</div>
+            <div class="category-dropdown-item">Asset Editor - Use the asset editor to create custom buildings, parks, and more.</div>
+            <div class="category-dropdown-item">Fun Fact: The game's realistic simulation includes factors like citizen happiness and traffic flow.</div>
+        </div>
+    </div>
+    
+    <div class="category-box" id="landscaping">
+        <div class="category-name" onclick="toggleDropdown('landscaping-dropdown')">Landscaping</div>
+        <div class="category-dropdown" id="landscaping-dropdown">
+            <div class="category-dropdown-item">Terrain Modification - Reshape the land to suit your city's needs and aesthetics.</div>
+            <div class="category-dropdown-item">Parks and Plazas - Enhance your city's beauty with carefully placed green spaces.</div>
+            <div class="category-dropdown-item">Water Features - Add rivers, lakes, and canals to create stunning waterfronts.</div>
+            <div class="category-dropdown-item">Fun Fact: Cities: Skylines features a day-night cycle, affecting citizen schedules and traffic.</div>
+        </div>
+    </div>
+    
+    <div class="category-box" id="unique-buildings">
+        <div class="category-name" onclick="toggleDropdown('unique-buildings-dropdown')">Unique Buildings</div>
+        <div class="category-dropdown" id="unique-buildings-dropdown">
+            <div class="category-dropdown-item">Landmarks - Unlock and place iconic landmarks to boost tourism and city value.</div>
+            <div class="category-dropdown-item">Statues and Monuments - Erect statues and monuments to honor your city's achievements.</div>
+            <div class="category-dropdown-item">Achievement Buildings - Unlock special buildings by reaching in-game milestones.</div>
+            <div class="category-dropdown-item">Fun Fact: Cities: Skylines received widespread acclaim for its realism and depth in city-building simulation.</div>
+        </div>
+    </div>
+    
+    <div class="category-box" id="challenges">
+        <div class="category-name" onclick="toggleDropdown('challenges-dropdown')">Challenges</div>
+        <div class="category-dropdown" id="challenges-dropdown">
+            <div class="category-dropdown-item">Traffic Challenges - Tackle traffic issues in complex city layouts and high-population scenarios.</div>
+            <div class="category-dropdown-item">Natural Disaster Challenges - Survive and rebuild after devastating natural disasters.</div>
+            <div class="category-dropdown-item">Economic Challenges - Overcome financial obstacles and build a prosperous city.</div>
+            <div class="category-dropdown-item">Fun Fact: The game's development was inspired by earlier city-building simulations like SimCity.</div>
+        </div>
+    </div>
+    
+    <div class="category-box" id="waterfronts">
+        <div class="category-name" onclick="toggleDropdown('waterfronts-dropdown')">Waterfronts</div>
+        <div class="category-dropdown" id="waterfronts-dropdown">
+            <div class="category-dropdown-item">Marinas and Harbors - Develop thriving waterfronts with marinas and harbors.</div>
+            <div class="category-dropdown-item">Tourism on Water - Attract tourists with boat tours and water-based attractions.</div>
+            <div class="category-dropdown-item">Flood Prevention - Implement effective strategies to prevent flooding in coastal areas.</div>
+            <div class="category-dropdown-item">Fun Fact: Cities: Skylines provides a wealth of options for creating realistic and vibrant waterfronts.</div>
+        </div>
+    </div>
+    
+    <div class="category-box" id="sustainability">
+        <div class="category-name" onclick="toggleDropdown('sustainability-dropdown')">Sustainability</div>
+        <div class="category-dropdown" id="sustainability-dropdown">
+            <div class="category-dropdown-item">Green Energy - Opt for renewable energy sources to reduce pollution and enhance sustainability.</div>
+            <div class="category-dropdown-item">Recycling Programs - Implement effective recycling programs to manage waste.</div>
+            <div class="category-dropdown-item">Green Transportation - Promote eco-friendly transportation options for your citizens.</div>
+            <div class="category-dropdown-item">Fun Fact: Cities: Skylines offers a "Green Cities" expansion, focusing on eco-friendly city-building.</div>
+        </div>
+    </div>
+    
+    <div class="category-box" id="cultural-districts">
+        <div class="category-name" onclick="toggleDropdown('cultural-districts-dropdown')">Cultural Districts</div>
+        <div class="category-dropdown" id="cultural-districts-dropdown">
+            <div class="category-dropdown-item">Museums and Galleries - Establish cultural hubs with museums and art galleries.</div>
+            <div class="category-dropdown-item">Cultural Policies - Implement policies to nurture and promote cultural development.</div>
+            <div class="category-dropdown-item">Events and Festivals - Boost cultural appeal with events and festivals throughout the year.</div>
+            <div class="category-dropdown-item">Fun Fact: Cities: Skylines allows players to create and share custom scenarios and challenges.</div>
+        </div>
+    </div>
+    
+    <div class="category-box" id="tourism-and-leisure">
+        <div class="category-name" onclick="toggleDropdown('tourism-leisure-dropdown')">Tourism and Leisure</div>
+        <div class="category-dropdown" id="tourism-leisure-dropdown">
+            <div class="category-dropdown-item">Tourist Attractions - Build landmarks and attractions to draw tourists to your city.</div>
+            <div class="category-dropdown-item">Entertainment Districts - Create vibrant entertainment hubs with theaters, stadiums, and nightlife.</div>
+            <div class="category-dropdown-item">Transporting Tourists - Develop efficient transport links to cater to tourist needs.</div>
+            <div class="category-dropdown-item">Fun Fact: Cities: Skylines offers a "After Dark" expansion, introducing a day-night cycle and nightlife features.</div>
+        </div>
+    </div>
+    
+    <div class="category-box" id="disasters">
+        <div class="category-name" onclick="toggleDropdown('disasters-dropdown')">Disasters</div>
+        <div class="category-dropdown" id="disasters-dropdown">
+            <div class="category-dropdown-item">Natural Disasters - Prepare for and recover from earthquakes, tornadoes, and other calamities.</div>
+            <div class="category-dropdown-item">Emergency Services - Manage police, fire, and medical services to handle disasters effectively.</div>
+            <div class="category-dropdown-item">Disaster Response - Implement evacuation plans and disaster response strategies.</div>
+            <div class="category-dropdown-item">Fun Fact: Cities: Skylines features a "Natural Disasters" expansion, adding various disasters and emergency response mechanics.</div>
+        </div>
+    </div>
+    
+    <div class="category-box" id="city-customization">
+        <div class="category-name" onclick="toggleDropdown('customization-dropdown')">City Customization</div>
+        <div class="category-dropdown" id="customization-dropdown">
+            <div class="category-dropdown-item">Themes and Styles - Customize your city's appearance with different themes and architectural styles.</div>
+            <div class="category-dropdown-item">District Styles - Apply unique styles to individual districts for diverse urban landscapes.</div>
+            <div class="category-dropdown-item">Seasonal Changes - Experience seasonal variations, affecting traffic, energy, and citizen behavior.</div>
+            <div class="category-dropdown-item">Fun Fact: Cities: Skylines features a "Snowfall" expansion, introducing winter weather and related challenges.</div>
+        </div>
+    </div>
+    
+    <div class="category-box" id="transportation-hubs">
+        <div class="category-name" onclick="toggleDropdown('transportation-hubs-dropdown')">Transportation Hubs</div>
+        <div class="category-dropdown" id="transportation-hubs-dropdown">
+            <div class="category-dropdown-item">Airports and Seaports - Develop comprehensive transportation hubs with airports and seaports.</div>
+            <div class="category-dropdown-item">High-Speed Rail - Integrate high-speed rail networks for efficient citywide connectivity.</div>
+            <div class="category-dropdown-item">Pedestrian Paths - Enhance walkability with well-designed pedestrian paths and walkways.</div>
+            <div class="category-dropdown-item">Fun Fact: Cities: Skylines offers a "Mass Transit" expansion, introducing new transit options and systems.</div>
+        </div>
+    </div>
+    
+</main>
+    <footer class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="footer-col">
+                    <h4>Contact Us</h4>
+                    <ul>
+                        <li><a href="mailto:gamecriticreview.com@gmail.com">Email</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Creator Of This Review</h4>
+                    <ul>
+                        <li><a href="#">DinoPlayzZ / CEO David</a></li>
+                        <li><a href="mailto:davidworker000@gmail.com">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Other Products</h4>
+                    <ul>
+                        <li><a target="_blank" href="https://www.xfisher.org">xFisher</a></li>
+                        <li><a target="_blank" href="https://www.playcraft.no">Playcraft</a></li>
+                        <li><a target="_blank" href="https://www.fiverr.com/davidsamochvalo?up_rollout=true">Fiverr - David</a></li>
+                        <li><a target="_blank" href="#">Fiverr - Aleks</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

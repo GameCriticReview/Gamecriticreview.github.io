@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>
+        Cities Skylines
+    </title>
+
+    <style>
+            body {
+        padding-top: 80px;
+        margin: 0;
+        }
+
+        * {
+            padding: 0;
+            margin: 0;
+            font-family: 'Arial', monospace;
+        }
+
+        nav {
+            background: #64b4ff;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            width: 100%;
+            z-index: 999;
+        }
+
+        .logo {
+            padding: 0;
+        }
+
+        .nav-link {
+            display: block;
+            padding: 15px;
+            color: #FFF;
+            text-decoration: none;
+            text-align: center;
+            font-size: 20px;
+            transition: font-size 0.3s;
+        }
+
+        .dropdown-button {
+            color: #FFF;
+            text-decoration: none;
+            text-align: center;
+            font-size: 20px;
+            transition: font-size 0.3s;
+        }
+
+        .nav-link:hover {
+            background: #3091ec;
+        }
+
+        .nav-list {
+            list-style: none;
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        .nav-item {
+            display: inline-block;
+            position: relative;
+            margin-right: 10px;
+        }
+
+        .nav-item:last-child {
+            margin-right: 0;
+        }
+
+        .dropdown {
+            background: #64b4ff;
+            position: absolute;
+            z-index: 999;
+            display: none;
+            padding: 0;
+            max-width: 120px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .dropdown-item a {
+            display: block;
+            padding: 10px; /* Adjust as needed */
+            text-align: left; /* Align text to the left */
+            color: #FFF;
+            text-decoration: none;
+            font-size: 16px; /* Adjust as needed */
+            transition: background 0.3s, font-size 0.3s;
+        }
+
+        .dropdown-item:hover a {
+            background: #3091ec;
+            color: #FFF;
+            font-size: 18px; /* Adjust as needed */
+        }
+
+        .nav-item:hover .dropdown {
+            display: block;
+        }
+
+        .gamenav {
+            margin-top: 49px;
+        }
+
+        .navbar {
+            background-color: #3091ec;
+            display: flex;
+            justify-content: space-between;
+            padding: 7px;
+        }
+
+        .navbar-section {
+            text-align: center;
+            color: #fff;
+            margin: 0;
+            flex: 1;
+            font-weight: bold;
+        }
+
+        .navbar-section a {
+            text-decoration: none;
+            font-weight: bold;
+            color: #fff;
+        }
+
+        .navbar-section button {
+            background-color: #fff;
+            color: #64b4ff;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+            border-radius: 20px;
+            margin-right: 20px;
+        }
+
+        .footer {
+            background-color: #3091ec;
+            padding: 70px 0;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        .row {
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        .footer-col {
+            width: 30%;
+            padding: 0 15px;
+        }
+
+        .footer-col h4 {
+            font-size: 18px;
+            color: white;
+            text-transform: capitalize;
+            margin-bottom: 35px;
+            font-weight: 500;
+            position: relative;
+        }
+
+        .footer-col h4::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: -10px;
+            background-color: #e91e63;
+            height: 2px;
+            box-sizing: border-box;
+            width: 50px;
+        }
+
+        .footer-col ul li:not(:last-child) {
+            margin-bottom: 10px;
+        }
+
+        .footer-col ul li a {
+            font-size: 16px;
+            text-transform: capitalize;
+            color: rgb(219, 219, 219);
+            text-decoration: none;
+            font-weight: 300;
+            display: block;
+            transition: all 0.3s ease;
+        }
+
+        .footer-col ul li a:hover {
+            color: rgb(163, 163, 163);
+            padding-left: 10px;
+        }
+
+        @media (max-width: 768px) {
+            .logo img {
+                width: 250px;
+            }
+            .nav-list {
+                justify-content: center;
+            }
+            .nav-item {
+                margin-right: 5px;
+            }
+            .nav-link {
+                font-size: 16px;
+            }
+            .dropdown-item {
+                max-width: 100px;
+            }
+            .center-button a {
+                font-size: 14px;
+            }
+            .dropdown-button {
+                font-size: 16px;
+            }
+            .info {
+                margin-top: 40px;
+            }
+            .description-text {
+                font-size: 14px;
+            }
+        }
+    </style>
+
+
+    
+    <style>
+
+        body{
+            background-color: #64b4ff;
+        }
+
+        main{
+        margin-left: 150px;
+        margin-right:150px;
+        background-color: #64b4ff;
+        margin-top: 75px;
+        }
+
+        .category-box {
+            border: 2px solid #3091ec;
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 20px;
+        }
+
+        .category-name {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 10px;
+            cursor: pointer;
+            color: white;
+        }
+
+        .category-dropdown {
+            display: none;
+            margin-top: 10px;
+        }
+
+        .category-dropdown-item {
+            font-size: 18px;
+            margin-bottom: 5px;
+            color: #555;
+        }
+    </style>
+
+<script>
+    function toggleDropdown(id) {
+        var dropdown = document.getElementById(id);
+        dropdown.style.display = dropdown.style.display === 'none' ? 'block' : 'none';
+    }
+</script>
+</head>
+
+<body>
+    <nav class="navbar">
+        <div class="navbar-section">
+            <p><a href="/index.html" class="right-section-navtop">Back to GameCriticReview</a></p>
+        </div>
+        <div class="navbar-section">
+            <p>Cities Skylines</p>
+        </div>
+        <div class="navbar-section">
+            <button>Login/Sign Up</button>
+        </div>
+    </nav>
+    
+    <nav class="gamenav">
+        <div class="logo">
+            <a href=""><img src="images/gamecriticreviewlogo.png" alt="Gamecriticreview Logo" width="400"></a>
+        </div>
+        <ul class="nav-list">
+            <li class="nav-item"><a class="nav-link" href="/CitiesSkylines/citiesskylines-home.html">Home</a></li>
+            <li class="nav-item"><a class="nav-link" href="/CitiesSkylines/citiesskylines-about.html">About</a></li>
+            <li class="nav-item"><a class="nav-link" href="/CitiesSkylines/citiesskylines-guide.html"><u><b>Guide</b></u></a></li>
+            <li class="nav-item"><a class="nav-link" href="/CitiesSkylines/citiesskylines-tips.html">Tips</a></li>
+            <li class="nav-item"><a class="nav-link" href="/CitiesSkylines/citiesskylines-maps.html">Maps</a></li>
+            <li class="nav-item"><a class="nav-link" href="/CitiesSkylines/citiesskylines-mods.html">Mods</a></li>
+            <li class="nav-item"><a class="nav-link" href="https://store.steampowered.com/news/app/255710">News</a></li>
+            <li class="nav-item"><a class="nav-link" href="/CitiesSkylines/citiesskylines-faq.html">FAQ</a></li>
+            <li class="nav-item">
+                <a class="nav-link" href="">Download</a>
+                <ul class="dropdown">
+                    <li class="dropdown-item"><a href="https://www.paradoxinteractive.com/games/cities-skylines/buy">Paradox Store</a></li>
+                    <li class="dropdown-item"><a href="https://store.steampowered.com/app/255710/Cities_Skylines/">Steam</a></li>
+                    <li class="dropdown-item"><a href="https://store.epicgames.com/en-US/p/cities-skylines">Epic Games</a></li>
+                    <li class="dropdown-item"><a href="https://store.playstation.com/no-no/product/EP4139-PPSA09192_00-CITIESSKYLINESEU/">Play- station 4</a></li>
+                    <li class="dropdown-item"><a href="https://store.playstation.com/no-no/product/EP4139-PPSA09192_00-CITIESSKYLINESEU/">Play- station 5</a></li>
+                    <li class="dropdown-item"><a href="https://www.xbox.com/nb-NO/games/store/cities-skylines-xbox-one-edition/c4gh8n6zxg5l">Xbox</a></li>
+                    <li class="dropdown-item"><a href="https://www.nintendo.com/us/store/products/cities-skylines-nintendo-switch-edition-switch/">Nintendo Switch</a></li>
+                    <li class="dropdown-item"><a href="https://www.xbox.com/nb-no/games/store/cities-skylines-windows-10-edition/9nwvc7xp3pfd?rtc=1">Microsoft</a></li>
+                </ul>
+            </li>
+        </ul>
+    </nav>
+<main>
+    <div class="category-box" id="Traffic-Management-Mastery">
+        <div class="category-name" onclick="toggleDropdown('Traffic-Management-Mastery-dropdown')">Traffic Management Mastery</div>
+        <div class="category-dropdown" id="Traffic-Management-Mastery-dropdown">
+            <div class="category-dropdown-item">Efficient traffic management is the backbone of a successful city. Dive into the intricacies of road hierarchy, traffic signal optimization, and advanced roundabout design. Utilize mods like Traffic Manager: President Edition to gain unprecedented control over traffic flow. Experiment with public transport integration, creating dedicated lanes for buses and metro systems. Develop a comprehensive understanding of your citizens' commuting patterns to design road networks that alleviate congestion and keep the city running smoothly.</div>
+        </div>
+    </div>
+
+    <div class="category-box" id="infrastructure1">
+        <div class="category-name" onclick="toggleDropdown('infrastructure1-dropdown')">High-Density Residential Planning</div>
+        <div class="category-dropdown" id="infrastructure1-dropdown">
+            <div class="category-dropdown-item">Creating vibrant high-density residential zones requires a keen understanding of city dynamics. Implement mixed-use zoning to blend commercial and residential areas seamlessly. Focus on green spaces and amenities to enhance the quality of life for your citizens. Experiment with different architectural styles and utilize mods like Rico to introduce custom residential assets. Balancing high-density areas with adequate services ensures a thriving urban environment where citizens can live, work, and play.</div>
+        </div>
+    </div>
+
+    <div class="category-box" id="infrastructure2">
+        <div class="category-name" onclick="toggleDropdown('infrastructure2-dropdown')">Public Transport Prowess</div>
+        <div class="category-dropdown" id="infrastructure2-dropdown">
+            <div class="category-dropdown-item">Building a robust public transport system involves more than laying down bus stops and subway stations. Master the art of route optimization, creating efficient and well-connected networks. Utilize dedicated bus lanes, integrate park-and-ride systems, and design transit hubs that serve as central points for various transport modes. Explore mods like Improved Public Transport for additional control over your city's mobility. Implementing a reliable public transport system not only reduces traffic but also enhances the overall livability of your city.</div>
+        </div>
+    </div>
+
+    <div class="category-box" id="infrastructure3">
+        <div class="category-name" onclick="toggleDropdown('infrastructure3-dropdown')">Waterfront Development Strategies</div>
+        <div class="category-dropdown" id="infrastructure3-dropdown">
+            <div class="category-dropdown-item">Unlock the full potential of waterfront areas by combining aesthetics with functionality. Implement leisure zones along riversides, encouraging citizens to enjoy parks, promenades, and recreational activities. Utilize quays, seawalls, and ferry systems to enhance connectivity and accessibility. Experiment with custom assets and landscaping tools to create picturesque waterfronts. Strategic waterfront development not only boosts land value but also attracts tourists, contributing to the city's economic prosperity.</div>
+        </div>
+    </div>
+
+    <div class="category-box" id="infrastructure4">
+        <div class="category-name" onclick="toggleDropdown('infrastructure4-dropdown')">Tourism and Landmarks</div>
+        <div class="category-dropdown" id="infrastructure4-dropdown">
+            <div class="category-dropdown-item">Transforming your city into a tourist destination requires a careful blend of iconic landmarks and tourist-friendly infrastructure. Strategically place landmarks and unique buildings to create focal points for visitors. Develop leisure and entertainment districts, including theaters, stadiums, and amusement parks. Experiment with tourism-focused policies and utilize mods like Tourism Simulation to fine-tune the tourist experience. Balancing the influx of tourists with the needs of your residents ensures a harmonious coexistence between local life and global appeal.</div>
+        </div>
+    </div>
+
+    <div class="category-box" id="infrastructure5">
+        <div class="category-name" onclick="toggleDropdown('infrastructure5-dropdown')">Efficient Utility Management</div>
+        <div class="category-dropdown" id="infrastructure5-dropdown">
+            <div class="category-dropdown-item">A stable supply of utilities is vital for a thriving city. Dive into the intricacies of power distribution, water supply, and waste management. Implement eco-friendly initiatives such as solar power plants and recycling centers to minimize environmental impact. Utilize mods like Advanced Wind Turbines and Water Treatment Plants to enhance utility management. Establish redundancy in utility networks to prevent disruptions during high-demand periods or disasters. Efficient utility management not only ensures citizen satisfaction but also contributes to the city's sustainability.</div>
+        </div>
+    </div>
+
+    <div class="category-box" id="infrastructure6">
+        <div class="category-name" onclick="toggleDropdown('infrastructure6-dropdown')">Unique District Specialization</div>
+        <div class="category-dropdown" id="infrastructure6-dropdown">
+            <div class="category-dropdown-item">Take district specialization to new heights by tailoring each area to its unique strengths. Develop specialized industrial zones, focusing on eco-friendly practices or high-tech manufacturing. Create cultural districts with a mix of museums, theaters, and art galleries. Implement policies that cater to each district's specific needs, such as encouraging biking in eco-friendly zones or promoting nightlife in entertainment districts. Fine-tune taxation policies to incentivize growth in specialized areas, creating a diverse and dynamic urban landscape.</div>
+        </div>
+    </div>
+
+    <div class="category-box" id="infrastructure7">
+        <div class="category-name" onclick="toggleDropdown('infrastructure7-dropdown')"> Zoning for Commercial Success</div>
+        <div class="category-dropdown" id="infrastructure7-dropdown">
+            <div class="category-dropdown-item">Mastering commercial zoning involves understanding the demand for various types of commercial areas. Develop bustling business districts by providing a mix of office spaces, retail zones, and leisure facilities. Utilize policies like High-Tech Housing and Small Business Enthusiast to encourage diverse commercial activities. Experiment with custom commercial assets and beautification projects to create visually appealing commercial areas. Balancing the needs of businesses with the desires of your citizens ensures a thriving economy and vibrant urban atmosphere.</div>
+        </div>
+    </div>
+
+    <div class="category-box" id="infrastructure8">
+        <div class="category-name" onclick="toggleDropdown('infrastructure8-dropdown')">Green Initiatives and Sustainability</div>
+        <div class="category-dropdown" id="infrastructure8-dropdown">
+            <div class="category-dropdown-item">Lead your city into a sustainable future by embracing green initiatives. Implement renewable energy sources, such as solar and wind power, to reduce the carbon footprint. Create green spaces, parks, and eco-friendly residential zones to promote environmental consciousness. Utilize policies like Green Cities to prioritize sustainability in city planning. Experiment with self-sufficient neighborhoods powered by renewable energy and equipped with waste-reducing facilities. Balancing growth with environmental stewardship ensures a resilient and eco-friendly urban environment.</div>
+        </div>
+    </div>
+
+    <div class="category-box" id="infrastructure9">
+        <div class="category-name" onclick="toggleDropdown('infrastructure9-dropdown')">Education Excellence</div>
+        <div class="category-dropdown" id="infrastructure9-dropdown">
+            <div class="category-dropdown-item">Cultivating a knowledgeable and skilled population is essential for long-term success. Develop a comprehensive education system, from elementary schools to universities. Experiment with policies that encourage student health, such as free lunch programs and recreational spaces. Utilize mods like Campus to enhance the diversity of educational buildings and facilities. Implementing a well-rounded education strategy ensures a highly skilled workforce, fostering innovation and economic growth.</div>
+        </div>
+    </div>
+
+    <div class="category-box" id="infrastructure10">
+        <div class="category-name" onclick="toggleDropdown('infrastructure10-dropdown')">Health and Wellness Initiatives</div>
+        <div class="category-dropdown" id="infrastructure10-dropdown">
+            <div class="category-dropdown-item">Prioritize the health and well-being of your citizens by establishing a robust healthcare system. Develop hospitals, clinics, and wellness centers strategically to ensure citywide coverage. Implement policies that promote healthy lifestyles, such as recreational use and smoke-free zones. Utilize mods like Realistic Population and Health and Death Rebalance to add depth to the healthcare simulation. Regularly assess the city's health metrics and adjust healthcare policies accordingly to create a thriving and resilient urban population.</div>
+        </div>
+    </div>
+
+    <div class="category-box" id="infrastructure11">
+        <div class="category-name" onclick="toggleDropdown('infrastructure11-dropdown')">Industrial Efficiency and Innovation</div>
+        <div class="category-dropdown" id="infrastructure11-dropdown">
+            <div class="category-dropdown-item">Enhance industrial sectors by promoting innovation and efficiency. Implement modern industrial zones equipped with the latest technologies and eco-friendly practices. Create research and development centers to drive technological advancements in manufacturing. Utilize policies like Industrial Space Planning to optimize the layout and efficiency of industrial areas. Balancing industrial growth with environmental sustainability ensures a competitive and forward-thinking industrial sector.c</div>
+        </div>
+    </div>
+
+    <div class="category-box" id="infrastructure12">
+        <div class="category-name" onclick="toggleDropdown('infrastructure12-dropdown')">Agricultural Productivity</div>
+        <div class="category-dropdown" id="infrastructure12-dropdown">
+            <div class="category-dropdown-item">Ensuring a stable food supply is crucial for the well-being of your citizens. Develop efficient agricultural zones, incorporating crop rotation and advanced farming practices. Implement policies that support local agriculture, such as organic farming initiatives. Utilize mods like More Beautification and Prop Precision to create visually stunning rural landscapes. Balancing the demand for agricultural products with sustainable farming practices ensures food security and contributes to the overall health and happiness of your citizens.</div>
+        </div>
+    </div>
+
+    <div class="category-box" id="infrastructure13">
+        <div class="category-name" onclick="toggleDropdown('infrastructure13-dropdown')">Unique Landscaping and Beautification</div>
+        <div class="category-dropdown" id="infrastructure13-dropdown">
+            <div class="category-dropdown-item">Transform your cityscape into a work of art by focusing on landscaping and beautification projects. Implement diverse green spaces, from small parks to expansive botanical gardens. Experiment with custom assets and mods like Prop Line Tool to add unique details to your city. Utilize pathways, decorative elements, and themed landscaping to create visually stunning and immersive environments. Regularly revisit and update beautification projects to maintain the city's aesthetic appeal and keep citizens engaged and satisfied.</div>
+        </div>
+    </div>
+
+    <div class="category-box" id="infrastructure14">
+        <div class="category-name" onclick="toggleDropdown('infrastructure14-dropdown')">Nightlife and Entertainment</div>
+        <div class="category-dropdown" id="infrastructure14-dropdown">
+            <div class="category-dropdown-item">Foster a vibrant nightlife by creating entertainment districts that cater to the diverse interests of your citizens. Develop theaters, nightclubs, and restaurants with unique themes and designs. Utilize policies like Extended Leisure Hours and Entertainment Boost to encourage nighttime activities. Experiment with custom assets and mods like Real Time to dynamically adjust the city's activities based on the time of day. Balancing nightlife with residential areas ensures a lively and engaging urban environment where citizens can unwind and enjoy leisure activities.</div>
+        </div>
+    </div>
+
+    <div class="category-box" id="infrastructure15">
+        <div class="category-name" onclick="toggleDropdown('infrastructure15-dropdown')">Civic Policies and Citizen Happiness</div>
+        <div class="category-dropdown" id="infrastructure15-dropdown">
+            <div class="category-dropdown-item">Implementing civic policies that prioritize citizen happiness is essential for the overall success of your city. Fine-tune taxation policies to strike a balance between revenue generation and citizen satisfaction. Develop policies that address specific concerns, such as free public transport or recreational use in designated areas. Utilize data layers and city metrics to gauge citizen happiness and adjust policies accordingly. Regularly survey citizens to understand their needs and preferences, creating a responsive and citizen-centric city.</div>
+        </div>
+    </div>
+
+    <div class="category-box" id="infrastructure16">
+        <div class="category-name" onclick="toggleDropdown('infrastructure16-dropdown')">Smart City Technologies</div>
+        <div class="category-dropdown" id="infrastructure16-dropdown">
+            <div class="category-dropdown-item">Embrace the future with smart city technologies that enhance efficiency and connectivity. Implement intelligent infrastructure, including smart grids and automated traffic control systems. Utilize data analysis tools to make informed decisions and optimize city operations. Experiment with mods like Network Extensions 2 and Traffic Manager: President Edition to gain advanced control over city systems. Regularly update and adapt smart city technologies to stay at the forefront of urban development, creating a cutting-edge and futuristic cityscape.</div>
+        </div>
+    </div>
+
+    <div class="category-box" id="infrastructure17">
+        <div class="category-name" onclick="toggleDropdown('infrastructure17-dropdown')">Historical Preservation and Cultural Heritage</div>
+        <div class="category-dropdown" id="infrastructure17-dropdown">
+            <div class="category-dropdown-item">Preserve the rich history and cultural heritage of your city by implementing strategies for historical districts. Develop preservation zones, protecting iconic buildings and landmarks. Utilize policies that promote cultural diversity and historical awareness. Experiment with custom assets and mods like Historical Districts to enhance the visual and narrative aspects of historical areas. Balancing modern development with historical preservation ensures a city that respects its past while looking towards the future.</div>
+        </div>
+    </div>
+
+    <div class="category-box" id="infrastructure18">
+        <div class="category-name" onclick="toggleDropdown('infrastructure18-dropdown')">City Branding and Global Reputation</div>
+        <div class="category-dropdown" id="infrastructure18-dropdown">
+            <div class="category-dropdown-item">Build a distinctive city brand that elevates your city's global reputation. Implement marketing campaigns, showcasing the unique features and achievements of your city. Develop signature landmarks and architectural marvels that become synonymous with your city's identity. Utilize mods like Building Themes and Theme Manager to create cohesive cityscapes that reflect your chosen theme. Regularly assess global reputation metrics to understand how your city is perceived on the global stage. Strategic city branding not only attracts tourists and investors but also contributes to the overall pride and satisfaction of your citizens.</div>
+        </div>
+    </div>
+
+    <div class="category-box" id="infrastructure19">
+        <div class="category-name" onclick="toggleDropdown('infrastructure19-dropdown')">Disaster Preparedness and Recovery</div>
+        <div class="category-dropdown" id="infrastructure19-dropdown">
+            <div class="category-dropdown-item">Safeguarding your city against disasters involves meticulous planning and quick response strategies. Implement early warning systems, evacuation routes, and disaster-resistant structures. Utilize mods like Natural Disasters to add a layer of unpredictability to your city management experience. Establish dedicated emergency service zones, including fire stations, police headquarters, and medical centers. Conduct city-wide drills to ensure your citizens are well-prepared for any unforeseen events.</div>
+        </div>
+    </div>
+</main>
+    <footer class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="footer-col">
+                    <h4>Contact Us</h4>
+                    <ul>
+                        <li><a href="mailto:gamecriticreview.com@gmail.com">Email</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Creator Of This Review</h4>
+                    <ul>
+                        <li><a href="#">DinoPlayzZ / CEO David</a></li>
+                        <li><a href="mailto:davidworker000@gmail.com">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Other Products</h4>
+                    <ul>
+                        <li><a target="_blank" href="https://www.xfisher.org">xFisher</a></li>
+                        <li><a target="_blank" href="https://www.playcraft.no">Playcraft</a></li>
+                        <li><a target="_blank" href="https://www.fiverr.com/davidsamochvalo?up_rollout=true">Fiverr - David</a></li>
+                        <li><a target="_blank" href="#">Fiverr - Aleks</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
